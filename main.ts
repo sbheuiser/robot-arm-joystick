@@ -44,4 +44,19 @@ basic.forever(function () {
             wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, v)
         }
     }
+    if (i == 3) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, 25)
+    }
+    if (i == 4) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, -35)
+    }
+    if (i == 5) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M1, -80)
+    }
+    if (i == 6) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M1, 80)
+    }
+    if (i == 0) {
+        wuKong.stopAllMotor()
+    }
 })
