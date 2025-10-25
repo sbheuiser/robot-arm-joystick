@@ -9,14 +9,6 @@ input.onButtonPressed(Button.AB, function () {
         wuKong.setMotorSpeed(wuKong.MotorList.M1, -100)
     }
 })
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    i = 1 - i
-    if (i == 1) {
-        wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, 90)
-    } else if (i == 0) {
-        wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, 45)
-    }
-})
 let v = 0
 let j = 0
 let i = 0
@@ -45,10 +37,10 @@ basic.forever(function () {
         }
     }
     if (i == 3) {
-        wuKong.setMotorSpeed(wuKong.MotorList.M2, 25)
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, -25)
     }
     if (i == 4) {
-        wuKong.setMotorSpeed(wuKong.MotorList.M2, -35)
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, 25)
     }
     if (i == 5) {
         wuKong.setMotorSpeed(wuKong.MotorList.M1, -80)
