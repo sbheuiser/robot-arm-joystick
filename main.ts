@@ -1,19 +1,47 @@
-joystickbit.initJoystickBit()
+radio.onReceivedNumber(function (receivedNumber) {
+    i = receivedNumber
+})
+input.onButtonPressed(Button.AB, function () {
+    j = 1 - j
+    if (j == 1) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M1, 100)
+    } else if (i == 0) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M1, -100)
+    }
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    i = 1 - i
+    if (i == 1) {
+        wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, 90)
+    } else if (i == 0) {
+        wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, 45)
+    }
+})
+let v = 0
+let j = 0
+let i = 0
 radio.setGroup(16)
+i = 99
+wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, 0)
 basic.forever(function () {
-    if (joystickbit.getRockerValue(joystickbit.rockerType.X) < 10) {
-        radio.sendNumber(4)
-    } else if (joystickbit.getRockerValue(joystickbit.rockerType.X) > 1010) {
-        radio.sendNumber(3)
-    } else if (joystickbit.getRockerValue(joystickbit.rockerType.Y) < 10) {
-        radio.sendNumber(2)
-    } else if (joystickbit.getRockerValue(joystickbit.rockerType.Y) > 1010) {
-        radio.sendNumber(1)
-    } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P12)) {
-        radio.sendNumber(5)
-    } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P13)) {
-        radio.sendNumber(6)
+    if (input.buttonIsPressed(Button.A)) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, -10)
+    } else if (input.buttonIsPressed(Button.B)) {
+        wuKong.setMotorSpeed(wuKong.MotorList.M2, 10)
     } else {
-        radio.sendNumber(0)
+        wuKong.stopAllMotor()
+    }
+    if (i == 1) {
+        if (v < 90) {
+            v = v + 2
+            basic.pause(100)
+            wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, v)
+        }
+    } else if (i == 2) {
+        if (v > 0) {
+            v = v - 2
+            basic.pause(100)
+            wuKong.setServoAngle(wuKong.ServoTypeList._360, wuKong.ServoList.S0, v)
+        }
     }
 })
